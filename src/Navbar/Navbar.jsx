@@ -1,7 +1,22 @@
-import React from 'react';
+import React, { use } from 'react';
 import { NavLink } from 'react-router';
 import Login from '../Pages/Login';
+
+import { AuthContext } from '../Authentication/AuthContext';
 const Navbar = () => {
+  const { user, logOut } = use(AuthContext);
+
+  const handleSignOut =()=>{
+         logOut()
+           .then((result) => {
+             console.log(result);
+             alert("signout successfull");
+           })
+           .catch((error) => {
+             console.log(error);
+           });
+    
+  }
     return (
       <div>
         <div className="navbar bg-base-100 shadow-sm">
@@ -55,9 +70,12 @@ const Navbar = () => {
           </div>
           <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal px-1">
-              <li>
-                <a>Item 1</a>
-              </li>
+              <NavLink to="/">
+                <li>
+                  <a>Home</a>
+                </li>
+              </NavLink>
+
               <li>
                 <details>
                   <summary>Parent</summary>
@@ -77,9 +95,17 @@ const Navbar = () => {
             </ul>
           </div>
           <div className="navbar-end">
-            <NavLink to="/login">
-              <button className="btn">Log in</button>
-            </NavLink>
+            {user ? (
+              <NavLink to="/register">
+                <button className="btn" onClick={handleSignOut}>
+                  sign out
+                </button>
+              </NavLink>
+            ) : (
+              <NavLink to="/login">
+                <button className="btn">Sign in</button>
+              </NavLink>
+            )}
           </div>
         </div>
       </div>
