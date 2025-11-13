@@ -59,7 +59,7 @@ const MyEnroll = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50/90 via-indigo-50/90 to-purple-100/90 mt-16 px-4 py-12">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50/90 via-indigo-50/90 to-purple-100/90 mt-16 px-4 py-11">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-700 bg-clip-text text-transparent mb-4">
