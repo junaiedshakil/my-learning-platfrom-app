@@ -10,7 +10,7 @@ const SingleCourse = ({ singleCourse }) => {
                     hover:scale-[1.03] transition-all duration-300
                     p-6 flex flex-col h-full min-h-[450px] text-gray-800"
       >
-        <div className="relative mb-6 aspect-[4/3] overflow-hidden rounded-xl">
+        <div className="relative mb-5 aspect-[4/3] overflow-hidden rounded-xl">
           <img
             src={singleCourse.image}
             alt={singleCourse.title}
