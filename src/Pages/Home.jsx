@@ -73,8 +73,8 @@ const topInstructors = [
     name: "Prof. Sofia Patel",
     title: "Artificial Intelligence",
     photo:
-      "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=300&h=300&fit=crop&crop=face",
-    bio: "PhD from Stanford,neural networks, 300+ publications.",
+      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300&h=300&fit=crop&crop=face",
+    bio: "PhD from Stanford, neural networks, 300+ publications.",
   },
 ];
 
