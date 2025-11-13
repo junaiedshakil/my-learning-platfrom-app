@@ -66,7 +66,7 @@ const CourseDetails = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50/90 via-indigo-50/90 to-purple-100/90 mt-15 px-4 py-12">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50/90 via-indigo-50/90 to-purple-100/90 mt-15 px-4 py-11">
       <div className="max-w-6xl mx-auto">
         <div className="bg-white/80 backdrop-blur-md rounded-3xl shadow-2xl border border-white/50 overflow-hidden mb-8">
           <div className="relative h-96 overflow-hidden">
