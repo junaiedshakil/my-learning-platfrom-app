@@ -20,7 +20,7 @@ const ViewAll = () => {
     <div className="min-h-screen mt-16 bg-gradient-to-br from-purple-50 via-indigo-50 to-purple-100 px-4 py-12">
       <div className="max-w-7xl mx-auto">
         
-        <div className="text-center mb-16">
+        <div className="text-center mb-15">
           <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-700 bg-clip-text text-transparent mb-4">
             Explore Our Courses
           </h1>
