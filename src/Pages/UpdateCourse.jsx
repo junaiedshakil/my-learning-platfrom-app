@@ -68,7 +68,7 @@ const UpdateCourse = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-indigo-50 to-purple-100 py-32 px-4 flex justify-center">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-indigo-50 to-purple-100 py-31 px-4 flex justify-center">
       <div className="w-full max-w-2xl bg-white rounded-2xl shadow-lg p-8">
         <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-700 bg-clip-text text-transparent mb-4 flex justify-center items-center">
           Update Course
