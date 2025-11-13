@@ -1,45 +1,50 @@
-import React from 'react';
-import { Link } from 'react-router';
-const SingleCourse = ({singleCourse}) => {
-    console.log(singleCourse);
-    return (
-      <div>
-        <div className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition duration-300 p-5 flex flex-col">
+import React from "react";
+import { Link } from "react-router-dom";
+
+const SingleCourse = ({ singleCourse }) => {
+  return (
+    <div className="group">
+      <div
+        className="bg-gradient-to-br from-white via-gray-100 to-gray-200
+                    rounded-2xl shadow-md hover:shadow-lg
+                    hover:scale-[1.03] transition-all duration-300
+                    p-6 flex flex-col h-full min-h-[450px] text-gray-800"
+      >
+        <div className="relative mb-6 aspect-[4/3] overflow-hidden rounded-xl">
           <img
             src={singleCourse.image}
             alt={singleCourse.title}
-            className="w-full h-48 object-cover rounded-xl mb-4"
+            className="w-full h-full object-cover rounded-xl transform transition-transform duration-500 group-hover:scale-105"
           />
-
-          <h2 className="text-xl font-bold mb-1 text-gray-800">
-            {singleCourse.title}
-          </h2>
-          <p className="text-sm text-indigo-600 font-medium mb-2">
-            {singleCourse.category}
-          </p>
-
-          <p className="text-gray-600 text-sm mb-4 line-clamp-3">
-            {singleCourse.description}
-          </p>
-
-          <div className="flex justify-between items-center mb-4">
-            <span className="font-semibold text-gray-800">
-              ${singleCourse.price}
-            </span>
-            <span className="text-gray-500 text-sm">
-              {singleCourse.duration}
-            </span>
-          </div>
-
-          <Link
-            to={`/course/${singleCourse._id}`}
-            className="mt-auto bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-purple-500 hover:to-indigo-500 text-white text-center py-2 rounded-lg font-medium transition duration-300"
-          >
-            View Details
-          </Link>
         </div>
+
+        <h2 className="text-xl font-bold mb-3 text-center flex-shrink-0 transition-colors duration-300 group-hover:text-purple-600">
+          {singleCourse.title}
+        </h2>
+
+        <p className="text-gray-700 text-sm mb-6 line-clamp-3 text-center leading-relaxed flex-grow">
+          {singleCourse.description}
+        </p>
+
+        <div className="flex justify-between items-center mb-6 text-center flex-shrink-0 min-h-[40px]">
+          <span className="font-semibold bg-gray-100 px-3 py-1 rounded-full">
+            ${singleCourse.price}
+          </span>
+          <span className="text-gray-500 text-sm">{singleCourse.duration}</span>
+        </div>
+
+        <Link
+          to={`/course/${singleCourse._id}`}
+          className="w-full bg-gradient-to-r from-purple-500 to-indigo-500
+                     hover:from-indigo-500 hover:to-purple-500
+                     text-white text-center py-3 rounded-full font-medium
+                     transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md"
+        >
+          View Details
+        </Link>
       </div>
-    );
+    </div>
+  );
 };
 
 export default SingleCourse;

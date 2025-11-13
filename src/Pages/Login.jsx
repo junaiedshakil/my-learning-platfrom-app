@@ -1,44 +1,59 @@
-import React, { use, useState } from "react";
-import { NavLink } from "react-router";
+import React, { useContext, useState } from "react";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Authentication/AuthContext";
+import { toast } from "react-toastify";
 
 const Login = () => {
-    const {signInUser, signInWithGoogle}=use(AuthContext)
+  const { signInUser, signInWithGoogle, saveUserToDB } =
+    useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log("Email:", email);
-    console.log("Password:", password);
-
-    signInUser();
+    signInUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        toast.success("Sign-in successful!");
+        saveUserToDB(user);
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        console.error("Login failed:", error.message);
+        toast.error("Invalid email or password.");
+      });
   };
 
   const handleGoogleLogin = () => {
     signInWithGoogle()
-    .then((result)=>{
-        console.log(result)
-        alert("signin successfully")
-    .catch((error)=>{
-        console.log(error)
-    })
-    })
-   
+      .then((result) => {
+        const user = result.user;
+        toast.success("Signin successfully");
+        saveUserToDB(user);
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-lg w-96">
-        <h2 className="text-2xl font-bold text-center mb-6">Login</h2>
-        <form onSubmit={handleLogin} className="flex flex-col">
+    <div className="flex justify-center items-center min-h-screen bg-gradient-to-tr from-blue-400 via-purple-500 to-pink-500 animate-gradient-x">
+      <div className="bg-white/90 p-10 rounded-3xl shadow-2xl w-96 backdrop-blur-md">
+        <h2 className="text-3xl font-extrabold text-center text-gray-800 mb-8 tracking-wide">
+          Welcome Back
+        </h2>
+        <form onSubmit={handleLogin} className="flex flex-col gap-4">
           <input
             type="email"
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            className="mb-4 p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-400 placeholder-gray-500"
           />
           <input
             type="password"
@@ -46,27 +61,27 @@ const Login = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            className="mb-4 p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-400 placeholder-gray-500"
           />
           <a
             href="#"
-            className="text-sm text-blue-500 mb-4 hover:underline text-right"
+            className="text-sm text-purple-600 hover:underline text-right"
           >
             Forget Password?
           </a>
           <button
             type="submit"
-            className="bg-blue-500 text-white py-3 rounded hover:bg-blue-600 transition-colors mb-3"
+            className="bg-gradient-to-r from-purple-500 to-pink-500 text-white py-3 rounded-lg font-semibold hover:from-pink-500 hover:to-purple-500 transition-all"
           >
             Login
           </button>
           <button
             type="button"
             onClick={handleGoogleLogin}
-            className="flex items-center justify-center bg-red-500 text-white py-3 rounded hover:bg-red-600 transition-colors mb-4"
+            className="flex items-center justify-center gap-2 bg-gradient-to-r from-red-500 to-yellow-400 text-white py-3 rounded-lg font-semibold hover:from-yellow-400 hover:to-red-500 transition-all"
           >
             <svg
-              className="w-5 h-5 mr-2"
+              className="w-5 h-5"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
@@ -78,11 +93,12 @@ const Login = () => {
             Login with Google
           </button>
         </form>
-
-       
-        <p className="text-sm text-center mt-4">
+        <p className="text-sm text-center mt-6 text-gray-700">
           Don't have an account?{" "}
-          <NavLink to="/register" className="text-blue-500 hover:underline">
+          <NavLink
+            to="/register"
+            className="text-purple-600 font-semibold hover:underline"
+          >
             Register
           </NavLink>
         </p>
