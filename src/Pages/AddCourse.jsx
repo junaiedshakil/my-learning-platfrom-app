@@ -33,14 +33,11 @@ const AddCourse = () => {
       created_at: new Date(),
     };
 
-    fetch(
-      `${"http://localhost:3000"}/learning`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newCourse),
-      }
-    )
+    fetch(`${"https://eduhubserver.vercel.app"}/learning`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newCourse),
+    })
       .then((res) => res.json())
       .then(() => {
         Swal.fire("Course added successfully!");
